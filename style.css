@@ -1,0 +1,28 @@
+#wrapper {
+	margin-left: 30%;
+	margin-right: 30%;
+}
+.top {
+	margin-top: 30vh;
+}
+.container {
+	max-width: 220px;
+	border: blue 1px solid;
+	padding: 10px;
+}
+.key {
+	border: 1px solid blue;
+	text-align: center;
+	max-width: 100%;
+	min-width:  22%;
+	padding: 5%;
+	margin: 1%;
+
+}
+
+.screen {
+	border: 1px solid black;
+	display: block;
+	max-width: 100%;	
+	min-height: 40px;
+}
