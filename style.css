@@ -1,21 +1,31 @@
 #wrapper {
-  border: solid 1px blue;
-  margin: 10% 30% 0 30%; }
+  border: solid 1px #99ffff;
+  margin: 10% 20% 0 20%; }
 
 .container {
-  max-width: 220px; }
+  max-width: 360px; }
 
-.key {
-  width: 100%;
-  max-width: 50px;
+.btn {
+  min-width: 90px;
+  min-height: 90px;
+  max-width: 90px;
+  max-height: 90px;
+  border: 1px #99ffcc solid; }
+
+.screen-input {
+  border: solid blue 1px;
+  padding: 10px;
+  font-size: 25px;
+  max-width: 250px;
   height: 50px;
-  border: 1px gray solid; }
+  padding: 10px; }
 
-.screen {
+.screen-output {
   font-size: 25px;
   max-width: 250px;
   height: 50px;
   direction: rtl;
-  padding: 10px; }
+  padding: 10px;
+  border: solid 1px red; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,11 @@
+calculator TODO:
+
+//-clear whole selection
+//-clear last input
+//-have two rows of diplay
+-put a cap on how many digits you can insert
+-make error display for division by zero
+//-make display like casio (insert from top left, results diplayed in top right)
+-let user input digits / operatiors via keyboard
+-transfer result from screen out to screen in ???
+(what to do if you clear all characters in sceenIN)
