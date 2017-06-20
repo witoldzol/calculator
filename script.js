@@ -61,8 +61,48 @@ $(document).ready(function(){
 		screenIn.html(screenIn.html().substring(0,x-1))
 	})
 	
-	
+	//key bindings for numeric pad
+	$('window').keydown( (e) => {
 
-		
+		alert( $(this).val() )
 
+	})
+
+	$(document).keydown(function(e){
+
+		switch(e.which){
+			case 97: $('#key1').click()
+				break
+			case 98: $('#key2').click()
+				break
+			case 99: $('#key3').click()
+				break
+			case 100: $('#key4').click()
+				break
+			case 101: $('#key5').click()
+				break
+			case 102: $('#key6').click()
+				break
+			case 103: $('#key7').click()
+				break
+			case 104: $('#key8').click()
+				break
+			case 105: $('#key9').click()
+				break
+			case 106: $('#key*').click()
+				break
+			case 107: $('#key+').click()
+				break
+			case 109: $('#key-').click()
+				break
+			case 110: $('#key.').click()
+				break
+			case 111: $('#key/').click()
+				break
+			case 13: $('#key=').click()
+				break					
+
+		}
+	                
+	 })
 })
