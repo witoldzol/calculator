@@ -3,8 +3,8 @@ $(document).ready(function(){
 	let operatorOn = true
 	let screenIn = $( ".screen-input" )
 	let screenOut = $( ".screen-output" )
-	let result = () => eval( screenIn.html() )
-
+	let result = () => eval( screenOut.html() + screenIn.html() )
+	let resultFromInput = () => eval ( screenIn.html() )
 	//listener for operator keys
 	$(".operator").on( "click", function(){
 
@@ -26,12 +26,26 @@ $(document).ready(function(){
 		operatorOn = false
 	})
 	
+	function isValid(str){
+	 return !/[+-/*]/g.test(str.charAt(0));
+	}
 
-	$(".evaluate").on("click", () => 
+	$(".evaluate").on("click", () => {
+		//if there are any special chars in the input string
+		// replace result with input (don't do any evaluation)
+		if( isValid( screenIn.html() ) ) {
+
+			screenOut.html( resultFromInput ) 
+		} else{
+
+			screenOut.html( result )
+		}
+
 		//if the result is a float value then return up to 8 decimal places
-		screenOut.html( result )
+		
+		screenIn.empty()
 
-	)
+	})
 
 	$(".clear").on("click", () => {
 		//clea out input and output, and insert 0
