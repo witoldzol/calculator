@@ -5,7 +5,10 @@ $(document).ready(function(){
 	let screenOut = $( ".screen-output" )
 	let result = () => eval( screenOut.html() + screenIn.html() )
 	let resultFromInput = () => eval ( screenIn.html() )
-	//listener for operator keys
+	let operatorsReg = /[+-/*]/
+
+
+	//listener for operator keys (except for dot)
 	$(".operator").on( "click", function(){
 
 		//if we pressed operator key previously, it will not register again
@@ -14,7 +17,21 @@ $(document).ready(function(){
 			screenIn.html(screenIn.html() + this.innerHTML)
 			operatorOn = true
 		}
+
+
 	})
+
+	//listener for dot
+	$(".dot").on( "click", () => {
+		let reg = /\./
+
+		if( !reg.test( screenIn.html() ) ) {
+		
+			screenIn.html( screenIn.html() + "." )
+			operatorOn = true
+		}	
+	})
+
 	//listener for normal key values
 	$(".key").on("click", function(){
 		//clear out initial zero 
@@ -27,7 +44,7 @@ $(document).ready(function(){
 	})
 	
 	function isValid(str){
-	 return !/[+-/*]/g.test(str.charAt(0));
+	 return !operatorsReg.test(str.charAt(0));
 	}
 
 	$(".evaluate").on("click", () => {
@@ -56,9 +73,10 @@ $(document).ready(function(){
 	
 	$(".delete").on("click", () => {
 
-		let x = screenIn.html().length  
+		let x = screenIn.html().length 
 		//remove last character in the string
 		screenIn.html(screenIn.html().substring(0,x-1))
+
 	})
 	
 	//key bindings for numeric pad

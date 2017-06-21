@@ -10,3 +10,6 @@ calculator TODO:
 -figure out why operator keys don't show up on input
 //-transfer result from screen out to screen in ???
 //(what to do if you clear all characters in sceenIN)
+-dont allow more than one decimal point in input box!
+-if we delete operator, we gotta flip switch
+-enable dots if operator was used....and if operator was deleted ...disalow it again
