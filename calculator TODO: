@@ -10,6 +10,8 @@ calculator TODO:
 -figure out why operator keys don't show up on input
 //-transfer result from screen out to screen in ???
 //(what to do if you clear all characters in sceenIN)
--dont allow more than one decimal point in input box!
+//-dont allow more than one decimal point in input box!
 -if we delete operator, we gotta flip switch
 -enable dots if operator was used....and if operator was deleted ...disalow it again
+-remove zero from default input field and replace with blinking coursor
+-evaluate doesn't resolve fractions correctly (appends them like a string to result)

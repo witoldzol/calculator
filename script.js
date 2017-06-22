@@ -1,36 +1,16 @@
 $(document).ready(function(){
+	//switches 
+	let canUseOperator = true
+	let canUseDot = true
 
-	let operatorOn = true
+
 	let screenIn = $( ".screen-input" )
 	let screenOut = $( ".screen-output" )
 	let result = () => eval( screenOut.html() + screenIn.html() )
 	let resultFromInput = () => eval ( screenIn.html() )
-	let operatorsReg = /[+-/*]/
-
-
-	//listener for operator keys (except for dot)
-	$(".operator").on( "click", function(){
-
-		//if we pressed operator key previously, it will not register again
-		if( !operatorOn ){
-			
-			screenIn.html(screenIn.html() + this.innerHTML)
-			operatorOn = true
-		}
-
-
-	})
-
-	//listener for dot
-	$(".dot").on( "click", () => {
-		let reg = /\./
-
-		if( !reg.test( screenIn.html() ) ) {
-		
-			screenIn.html( screenIn.html() + "." )
-			operatorOn = true
-		}	
-	})
+	let operatorReg = /[+-/*]/
+	//let operatorDot = /\d+?\.{1}\d+[+-/*]\d+/g
+	let operatorDot = /\./
 
 	//listener for normal key values
 	$(".key").on("click", function(){
@@ -40,37 +20,75 @@ $(document).ready(function(){
 		} 
 		
 		screenIn.html(screenIn.html() + this.innerHTML)
-		operatorOn = false
+		canUseOperator = true
 	})
-	
+
+	//listener for OPERATOR keys (except for dot)
+	$(".operator").on( "click", function(){
+		//clear out initial zero
+		if(screenIn.html().length === 1 && screenIn.html() == 0){
+			screenIn.empty()
+		} 
+		//if we pressed operator key previously, it will not register again
+		if( canUseOperator ){
+			
+			screenIn.html(screenIn.html() + this.innerHTML)
+			canUseOperator = false
+			canUseDot = true
+		}
+
+
+	})
+
+	//listener for DOT
+	$(".dot").on( "click", () => {
+		
+		if( canUseDot ) {
+		
+			screenIn.html( screenIn.html() + "." )
+			canUseDot = false
+			canUseOperator = true
+		}	
+	})
+
+	//function that checks if operator is NOT in the first character of input string
+	//if TRUE, then we replace previous answer with new calculation
 	function isValid(str){
-	 return !operatorsReg.test(str.charAt(0));
+	 return !operatorReg.test(str.charAt(0));
 	}
 
+	//EVALUATION (equals sign)
 	$(".evaluate").on("click", () => {
 		//if there are any special chars in the input string
 		// replace result with input (don't do any evaluation)
 		if( isValid( screenIn.html() ) ) {
-
+			//evaluate only input and replace previous results
 			screenOut.html( resultFromInput ) 
-		} else{
+			canUseDot = true
+			canUseOperator = true
 
+		} else{
+			//evaluate input with the previous answer together
 			screenOut.html( result )
+			canUseDot = true
+			canUseOperator = true
 		}
 
-		//if the result is a float value then return up to 8 decimal places
-		
+		//after evaluation clear the input field
 		screenIn.empty()
 
 	})
 
+	// 'C' button that clears all inputs / outputs
 	$(".clear").on("click", () => {
 		//clea out input and output, and insert 0
 		screenOut.html(0)
 		screenIn.html(0)  
+		canUseDot = true
+		canUseOperator = true
 
 	})
-	
+	// 'DEL' button that removes last character from input field
 	$(".delete").on("click", () => {
 
 		let x = screenIn.html().length 
