@@ -8,7 +8,7 @@ $(document).ready(function(){
 	let screenOut = $( ".screen-output" )
 	let result = () => eval( screenOut.html() + screenIn.html() )
 	let resultFromInput = () => eval ( screenIn.html() )
-	let operatorReg = /[+-/*]/
+	let operatorReg = /[-+*/]/
 	//let operatorDot = /\d+?\.{1}\d+[+-/*]\d+/g
 	let operatorDot = /\./
 
@@ -25,10 +25,24 @@ $(document).ready(function(){
 
 	//listener for OPERATOR keys (except for dot)
 	$(".operator").on( "click", function(){
+
+		//test the last character in input field
+		//if it's a DOT do not let operator to be inserted 
+		if( operatorDot.test( screenIn.html().substring( screenIn.html().length -1, screenIn.html().length) ) ){
+			
+			return
+		}
+		//same as above, for operator (fail safe)
+		if( operatorReg.test( screenIn.html().substring( screenIn.html().length -1, screenIn.html().length) ) ){
+			
+			return
+		}
+
 		//clear out initial zero
 		if(screenIn.html().length === 1 && screenIn.html() == 0){
 			screenIn.empty()
 		} 
+
 		//if we pressed operator key previously, it will not register again
 		if( canUseOperator ){
 			
@@ -88,12 +102,33 @@ $(document).ready(function(){
 		canUseOperator = true
 
 	})
+
 	// 'DEL' button that removes last character from input field
 	$(".delete").on("click", () => {
 
 		let x = screenIn.html().length 
+		let last = screenIn.html().substring(x-1,x)
 		//remove last character in the string
 		screenIn.html(screenIn.html().substring(0,x-1))
+
+		//examine deleted character
+		//if it was operator, reset operator switch
+		if( operatorReg.test(last) ){
+
+			let y = screenIn.html().length 
+			let newLast = screenIn.html().substring(y-1,y)
+			if ( !operatorDot.test(newLast) ){
+
+				canUseOperator = true
+
+			}
+
+		//if dot was deleted, reset dot switch
+		} else if( operatorDot.test(last) ){
+
+			canUseDot = true
+
+		}
 
 	})
 	

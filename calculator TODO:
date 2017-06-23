@@ -11,7 +11,18 @@ calculator TODO:
 //-transfer result from screen out to screen in ???
 //(what to do if you clear all characters in sceenIN)
 //-dont allow more than one decimal point in input box!
--if we delete operator, we gotta flip switch
--enable dots if operator was used....and if operator was deleted ...disalow it again
--remove zero from default input field and replace with blinking coursor
--evaluate doesn't resolve fractions correctly (appends them like a string to result)
+//-if we delete operator, we gotta flip switch
+//-enable dots if operator was used....and if operator was deleted ...disalow it again
+//-evaluate doesn't resolve fractions correctly (appends them like a string to result)
+//-using dot allows using operator (need to limit it, so it can only be used if digit was inserted)
+
+---css
+-research media query
+-research break points
+-make buttons nice
+-make screen nice
+-make that blinking cursor in input field (instead of zero)
+
+
+
+-SHIP IT
