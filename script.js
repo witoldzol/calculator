@@ -1,25 +1,37 @@
+"use strict"
+
 $(document).ready(function(){
+	
+
+	$('#key+').css("background-color:blue")
+	$('#key-').css("background-color:blue")
+	
+
 	//switches 
 	let canUseOperator = true
 	let canUseDot = true
-
-
+	//top screen
 	let screenIn = $( ".screen-input" )
+	//botton screen (output)
 	let screenOut = $( ".screen-output" )
+	//evaluation of both screens
 	let result = () => eval( screenOut.html() + screenIn.html() )
+	//evaluation of only input screen
 	let resultFromInput = () => eval ( screenIn.html() )
+	//regEx
 	let operatorReg = /[-+*/]/
-	//let operatorDot = /\d+?\.{1}\d+[+-/*]\d+/g
 	let operatorDot = /\./
 
 	//listener for normal key values
 	$(".key").on("click", function(){
+
 		//clear out initial zero 
 		if(screenIn.html().length === 1 && screenIn.html() == 0){
 			screenIn.empty()
 		} 
-		
+		//append new input
 		screenIn.html(screenIn.html() + this.innerHTML)
+		//flip the switch (allow operator)
 		canUseOperator = true
 	})
 
@@ -141,7 +153,8 @@ $(document).ready(function(){
 
 	$(document).keydown(function(e){
 
-		switch(e.which){
+		switch( e.which ){
+
 			case 97: $('#key1').click()
 				break
 			case 98: $('#key2').click()
@@ -160,20 +173,23 @@ $(document).ready(function(){
 				break
 			case 105: $('#key9').click()
 				break
-			case 106: $('#key*').click()
+			case 106: $('#keyMul').click()
 				break
-			case 107: $('#key+').click()
+			case 107: $('#keyAdd').click()
 				break
-			case 109: $('#key-').click()
+			case 109: $('#keySub').click()
 				break
-			case 110: $('#key.').click()
+			case 110: $('#keyDot').click()
 				break
-			case 111: $('#key/').click()
+			case 111: $('#keyDiv').click()
 				break
-			case 13: $('#key=').click()
+			case 13: $('#keyEval').click()
+				break	
+			case 8: $('#keyDel').click()
 				break					
 
 		}
 	                
 	 })
+
 })
