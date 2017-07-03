@@ -1,49 +1,88 @@
 //variable
-$screen: 250px
+$screen: 				270px
+
+*
+	font-family: 		Courier
+
 
 //mixin
-=cont()
-	min-width: 60px
-	min-height: 60px
-	max-width: 60px
-	max-height: 60px
-	border: 1px #99ffcc solid
+=cont($size, $sizeWid, $line-height)
 
-
+	min-width: 			$sizeWid
+	min-height: 		$size
+	max-width: 			$sizeWid
+	max-height: 		$size
+	border: 			1px #99ffcc solid
+	text-align: 		center
+	background-color:	grey
+	color:				white
+	font-weight:		bold
+	line-height:		$line-height
+	text-shadow: 		1px 1px #555555
+	border-radius: 		5px
+	font-size:			1.5em
 
 #wrapper
-	border: solid 1px #99ffff
-	margin: 10% 20% 0 20%
+	margin: 			10% 20% 0 20%
+
 	@media screen and (max-width:480px)
-		margin: 15% 0 0 0
+		margin: 		15% 0 0 0
 
 .container
-	max-width: $screen
-	border: solid yellow 2px
+	max-width: 			$screen
+	border: 			solid #666666 15px
+	border-radius:		10px
+	
 
 .container
 	.row
 		.btn
-			+cont
-
+			+cont(60px, 60px, 45px)
+			&:hover
+				background-color:		#555
+				border:					4px #ffffdd solid
+		.btnBig
+			+cont(60px, 120px, 60px)	
+			&:hover
+				background-color: 		#ff9999
+				border:					4px #ffffdd solid
 .screen-input
-	overflow: hidden
-	text-overflow: ellipsis
-	border: solid blue 1px
-	padding: 10px
-	font-size: 25px
-	width: 100%
-	max-width: $screen
-	height: 50px
-	padding: 10px
 
+	overflow: 			hidden
+	text-overflow: 		ellipsis
+	padding: 			10px 25px 10px 25px
+	font-size: 			2em
+	width: 				100%
+	max-width: 			$screen
+	height: 			50px
+	padding: 			10px
+	text-indent: 		10px
+	color:				#555
+	background-color:	#d6d4d3
+	border-top:			3px solid #99ffcc 
+	border-right:		3px solid #99ffcc 
+	border-left:		3px solid #99ffcc 
+	
+	
 .screen-output
-	overflow: hidden
-	text-overflow:ellipsis
-	text-align: right
-	font-size: 25px
-	max-width: $screen
-	height: 50px
+	
+	overflow: 			hidden
+	text-overflow:		ellipsis
+	text-align: 		right
+	font-size: 			2em
+	max-width: 			$screen
+	height: 			50px
 	//direction: rtl
-	padding: 10px
-	border: solid 1px red
+	padding: 			5px
+	background-color:	#d6d4d3
+	border-bottom:		3px solid #99ffcc 
+	border-right:		3px solid #99ffcc 
+	border-left:		3px solid #99ffcc 
+
+	
+footer
+
+	margin-top: 		5vh
+	text-align: 		center
+	background-color:	#888
+	padding:			20px
